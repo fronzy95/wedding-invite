@@ -81,11 +81,101 @@
     .story-layout{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
     .story-art{background:#e7dfce;padding:15px;border:1px solid var(--line);transform:rotate(-1.2deg);box-shadow:var(--shadow)}
     .story-art img{width:100%;display:block}
-    .story-text{padding:10px}
+    .story-text{padding:10px;min-width:0}
     .story-text h3{font:500 3.5rem/.9 var(--serif);margin:0 0 20px}
     .story-text p{font:400 1.05rem/1.8 var(--serif);color:#55604e}
     .timeline{margin-top:40px;border-left:1px solid var(--line);padding-left:25px}
     .timeline-item{margin:0 0 25px}.timeline-year{font-size:.58rem;letter-spacing:.2em;color:var(--gold)}.timeline-text{font:500 1.25rem var(--serif);margin-top:4px}
+
+    /* Fixed Gallery with Desktop Controls & Zoom Containment */
+    .story-gallery{margin-top:42px;width:100%;max-width:100%;overflow:hidden}
+    .story-gallery-wrapper{position:relative;width:100%;display:flex;align-items:center}
+    .story-gallery-track{
+      display:flex;
+      gap:18px;
+      overflow-x:auto;
+      overflow-y:hidden;
+      scroll-snap-type:x mandatory;
+      padding:10px 8px 24px;
+      scrollbar-width:none;
+      -webkit-overflow-scrolling:touch;
+      scroll-behavior:smooth;
+      width:100%;
+    }
+    .story-gallery-track::-webkit-scrollbar{display:none}
+    
+    .story-arrow{
+      position:absolute;
+      top:45%;
+      transform:translateY(-50%);
+      width:38px;
+      height:38px;
+      border-radius:50%;
+      border:1px solid var(--line);
+      background:rgba(246,240,229,.92);
+      color:var(--ink);
+      font-size:1.1rem;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      z-index:10;
+      box-shadow:0 6px 18px rgba(0,0,0,.12);
+      transition:.2s;
+    }
+    .story-arrow:hover{background:#fff;transform:translateY(-50%) scale(1.08)}
+    .story-prev{left:0}
+    .story-next{right:0}
+
+    .story-slide{
+      flex:0 0 280px;
+      max-width:82vw;
+      scroll-snap-align:center;
+      background:#f7f1e7;
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      padding:12px;
+      transform:rotate(-.7deg);
+    }
+    .story-slide:nth-child(even){transform:rotate(.7deg)}
+    .story-slide-media{aspect-ratio:4/5;background:#e5ddcd;display:grid;place-items:center;overflow:hidden}
+    .story-slide-media img{width:100%;height:100%;object-fit:cover;display:block}
+    .story-placeholder{font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:#7f7c70;text-align:center;padding:20px}
+    .story-slide-caption{font:500 1.2rem/1.15 var(--serif);text-align:center;margin:16px 8px 10px;color:var(--ink)}
+    .story-slide-number{font-size:.52rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);text-align:center}
+    .story-gallery-note{text-align:center;margin:13px 0 0;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+    
+    .rsvp-counters{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      transition:all .35s ease;
+      overflow:hidden;
+      max-height:160px;
+      opacity:1;
+    }
+    /* Dynamic state when declining */
+    .rsvp-counters.hidden{
+      max-height:0;
+      opacity:0;
+      margin:0;
+      pointer-events:none;
+      transform:translateY(-10px);
+    }
+
+    .counter{border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.07);padding:13px 14px}
+    .counter label{display:block;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:#c5cbbb;margin-bottom:9px}
+    .counter-row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .counter-btn{width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.28);background:transparent;color:#fff;font-size:1.2rem;cursor:pointer}
+    .counter-value{min-width:28px;text-align:center;font:600 1.2rem var(--serif)}
+    .google-note{font-size:.68rem;line-height:1.6;color:#bfc6b8;margin:15px 0 0}
+    
+    @media(max-width:600px){
+      .rsvp-counters{grid-template-columns:1fr}
+      .story-slide{flex-basis:78vw}
+      .story-arrow{display:none}
+    }
+
     .rsvp{background:var(--ink);color:#f8f3e9}
     .rsvp .section-label{color:#b9c1ae}.rsvp .section-script{color:#d5ae68}
     .rsvp-box{max-width:620px;margin:35px auto 0;padding:34px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.18)}
@@ -93,6 +183,7 @@
     input,select,textarea{width:100%;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.07);color:#fff;padding:13px 14px;border-radius:2px;outline:none;font:inherit}
     option{color:#222}
     textarea{min-height:100px;resize:vertical}.rsvp-note{font-size:.7rem;line-height:1.6;color:#bfc6b8;margin:15px 0 0}
+    .hashtags{text-align:center;margin-top:22px;font-size:.58rem;letter-spacing:.16em;text-transform:lowercase;color:var(--muted)}
     .footer{padding:85px 20px;text-align:center;background:var(--paper2)}
     .footer .names{font:500 4rem/.8 var(--serif)}.footer .amp{font:400 2rem var(--script);color:var(--gold);display:block;margin:12px 0}
     .footer p{font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:var(--muted)}
@@ -101,6 +192,40 @@
     .p1{left:8%;top:18%;animation-delay:0s}.p2{right:10%;top:38%;animation-delay:2s}.p3{left:15%;bottom:15%;animation-delay:4s}.p4{right:15%;bottom:25%;animation-delay:6s}
     @keyframes drift{0%,100%{transform:translate(0,0) rotate(25deg)}50%{transform:translate(20px,30px) rotate(90deg)}}
     .toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:var(--ink);color:#fff;padding:12px 18px;border-radius:999px;font-size:.7rem;opacity:0;pointer-events:none;transition:.3s;z-index:80}.toast.show{opacity:1;transform:translate(-50%,0)}
+
+    .cinematic{position:relative;min-height:100svh;overflow:hidden;background:#20291d;color:#f8f3e9;display:grid;place-items:center}
+    .cinematic-bg{position:absolute;inset:0;background:radial-gradient(circle at 50% 40%,rgba(182,145,75,.2),transparent 42%),linear-gradient(160deg,#182018,#394632)}
+    .cinematic-flower{position:absolute;font-size:8rem;opacity:.13;animation:cinematicFloat 10s ease-in-out infinite}
+    .cf1{top:4%;left:3%;transform:rotate(-20deg)}.cf2{right:2%;bottom:4%;transform:rotate(160deg);animation-delay:3s}
+    .cinematic-copy{position:relative;z-index:2;text-align:center;padding:30px}
+    .cinematic-copy .small{font-size:.6rem;letter-spacing:.34em;text-transform:uppercase;color:#d8c69f}
+    .cinematic-copy .script{font:400 clamp(2.7rem,10vw,5.2rem)/.95 var(--script);margin:25px 0 10px}
+    .cinematic-copy .big{font:500 clamp(3rem,12vw,7rem)/.8 var(--serif);letter-spacing:.03em}
+    .cinematic-copy .big span{display:block}
+    .cinematic-copy .date{font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;margin-top:25px}
+    .cinematic-reveal{opacity:0;transform:translateY(22px);animation:reveal 1.2s .45s forwards}
+    .cinematic-reveal2{opacity:0;transform:translateY(22px);animation:reveal 1.2s 1s forwards}
+    @keyframes reveal{to{opacity:1;transform:none}}
+    @keyframes cinematicFloat{50%{transform:translate(18px,-15px) rotate(10deg)}}
+    .cinematic-scroll{position:absolute;bottom:28px;z-index:2;font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:#c8c8b8}
+    .cinematic-scroll:after{content:"↓";display:block;text-align:center;font-size:1.2rem;margin-top:8px;color:#d8b36a}
+    .family{background:linear-gradient(180deg,#eee6d8,#f7f1e7)}
+    .family-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:40px}
+    .family-card{padding:25px 15px;text-align:center;border:1px solid var(--line);background:rgba(255,255,255,.4);min-height:155px;display:flex;flex-direction:column;justify-content:center}
+    .family-card .family-icon{font-size:1.3rem;color:var(--gold);margin-bottom:10px}
+    .family-card h3{font:600 1.25rem var(--serif);margin:0}
+    .family-card p{font:400 .8rem/1.4 var(--serif);color:var(--muted);margin:8px 0 0}
+    .card-note{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:25px;text-align:center}
+    .music{background:#252e21;color:#f7f1e7}.music .section-label{color:#bbc4ae}.music .section-script{color:#d8b36a}
+    .music-player{max-width:480px;margin:35px auto 0;text-align:center;border:1px solid rgba(255,255,255,.18);padding:35px 25px;background:rgba(255,255,255,.04)}
+    .music-disc{width:100px;height:100px;border-radius:50%;margin:0 auto 22px;border:1px solid #caa760;display:grid;place-items:center;font:400 2rem var(--script);animation:spin 9s linear infinite}
+    .music-player.playing .music-disc{animation-play-state:running}.music-player:not(.playing) .music-disc{animation-play-state:paused}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .music-title{font:500 1.6rem var(--serif)}.music-caption{font-size:.7rem;color:#bcc4b7;margin:6px 0 20px}
+    .music-controls{display:flex;justify-content:center;gap:12px}.music-controls button{width:48px;height:48px;border-radius:50%;border:1px solid #caa760;background:transparent;color:#fff;cursor:pointer}
+    .event-card .placeholder{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:#8a887d;margin-top:13px}
+    @media(max-width:900px){.family-grid{grid-template-columns:repeat(2,1fr)}}
+
     @media(max-width:760px){
       section{padding:78px 18px}.opening-card{min-height:590px}.event-grid,.story-layout{grid-template-columns:1fr}.event-card{min-height:285px}.story-text{padding:25px 5px 5px}.story-text h3{text-align:center}.story-text p{text-align:center}.timeline{max-width:400px;margin:35px auto 0}
       .hero{padding-top:45px}.hero-art{margin-top:28px}
@@ -130,13 +255,25 @@
 </div>
 
 <main class="site" id="site">
+
+  <section class="cinematic" id="cinematic">
+    <div class="cinematic-bg"></div><div class="cinematic-flower cf1">❧</div><div class="cinematic-flower cf2">❧</div>
+    <div class="cinematic-copy">
+      <div class="small cinematic-reveal">A new chapter begins</div>
+      <div class="script cinematic-reveal">with love, faith &amp; forever</div>
+      <div class="big cinematic-reveal2"><span>Fronald</span><span>&amp;</span><span>Pratiksha</span></div>
+      <div class="date cinematic-reveal2">3 December 2026</div>
+    </div>
+    <div class="cinematic-scroll">Continue the story</div>
+  </section>
+
   <section class="hero" id="home">
     <span class="petal p1"></span><span class="petal p2"></span><span class="petal p3"></span><span class="petal p4"></span>
     <div class="hero-inner">
       <div class="hero-kicker">A celebration of love &amp; faith</div>
       <h2><span>Fronald</span><span class="amp">&amp;</span><span>Pratiksha</span></h2>
       <div class="hero-date">03 December 2026 · Mumbai</div>
-      <div class="hero-art"><img src="couple-illustration.png" alt="Illustrated portrait of Fronald and Pratiksha"></div>
+      <div class="hero-art"><img src="assets/couple-caricature.png" alt="Illustrated portrait of Fronald and Pratiksha"></div>
       <div class="scroll-note">Scroll to begin</div>
     </div>
   </section>
@@ -151,6 +288,7 @@
         <q>I have found the one whom my soul loves.</q>
         <cite>Song of Solomon 3:4</cite>
       </div>
+      <div class="hashtags">#fernsandpetals &nbsp;&nbsp; #fnpincovenant</div>
     </div>
   </section>
 
@@ -166,7 +304,7 @@
           <div class="event-sub">Let the celebrations begin</div>
           <div class="event-date">Wednesday · 2 December 2026</div>
           <div class="event-time">6:00 PM onwards</div>
-          <div class="venue">Voxton Inn<br>Mira Road</div>
+          <div class="venue">Voxton Inn<br>Mira Road</div><div class="placeholder">Sangeet details can be added here</div>
           <a class="maps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Voxton+Inn+Mira+Road">Open in Maps →</a>
         </article>
         <article class="event-card">
@@ -197,18 +335,49 @@
       <h2 class="section-title">From a moment<br>to a lifetime.</h2>
       <div class="section-script">a little chapter of our own</div>
       <div class="story-layout">
-        <div class="story-art"><img src="couple-illustration.png" alt="Fronald and Pratiksha illustration"></div>
+        <div class="story-art"><img src="assets/couple-caricature.png" alt="Fronald and Pratiksha illustration"></div>
         <div class="story-text">
           <h3>Two lives.<br>One promise.</h3>
           <p>Some stories are written quietly, one conversation and one prayer at a time. Ours brought two families, two journeys and two hearts together.</p>
           <p>Now, we are stepping into a new chapter — and we'd be honoured to have the people we love there with us.</p>
-          <div class="timeline">
-            <div class="timeline-item"><div class="timeline-year">THE BEGINNING</div><div class="timeline-text">Two paths crossed.</div></div>
-            <div class="timeline-item"><div class="timeline-year">THE PROMISE</div><div class="timeline-text">A future chosen together.</div></div>
-            <div class="timeline-item"><div class="timeline-year">THE NEXT CHAPTER</div><div class="timeline-text">03 December 2026 · Forever begins.</div></div>
+
+          <div class="story-gallery">
+            <div class="story-gallery-wrapper">
+              <button type="button" class="story-arrow story-prev" id="storyPrev" aria-label="Previous story">‹</button>
+              <div class="story-gallery-track" id="storyGalleryTrack">
+                <article class="story-slide"><div class="story-slide-media"><div class="story-placeholder">Add: assets/story-01-our-first-date.jpg</div></div><div class="story-slide-number">01</div><div class="story-slide-caption">Our first date</div></article>
+                <article class="story-slide"><div class="story-slide-media"><div class="story-placeholder">Add: assets/story-02-the-day-we-said-yes.jpg</div></div><div class="story-slide-number">02</div><div class="story-slide-caption">The day we said Yes to each other</div></article>
+                <article class="story-slide"><div class="story-slide-media"><div class="story-placeholder">Add: assets/story-03-the-walk.jpg</div></div><div class="story-slide-number">03</div><div class="story-slide-caption">Our fun during dates (The Walk)</div></article>
+                <article class="story-slide"><div class="story-slide-media"><div class="story-placeholder">Add: assets/story-04-r-city-mall.jpg</div></div><div class="story-slide-number">04</div><div class="story-slide-caption">Our fun during dates (In R-City Mall)</div></article>
+                <article class="story-slide"><div class="story-slide-media"><div class="story-placeholder">Add: assets/story-05-roka.jpg</div></div><div class="story-slide-number">05</div><div class="story-slide-caption">A future Chosen together (Roka)</div></article>
+                <article class="story-slide"><div class="story-slide-media"><div class="story-placeholder">Add: assets/story-06-poptates.jpg</div></div><div class="story-slide-number">06</div><div class="story-slide-caption">Our fun during dates (Poptates)</div></article>
+                <article class="story-slide"><div class="story-slide-media"><div class="story-placeholder">Add: assets/story-07-80s-vibe.jpg</div></div><div class="story-slide-number">07</div><div class="story-slide-caption">The 80's Vibe</div></article>
+                <article class="story-slide"><div class="story-slide-media"><div class="story-placeholder">Add: assets/story-08-gen-z-pose.jpg</div></div><div class="story-slide-number">08</div><div class="story-slide-caption">The Gen-Z pose</div></article>
+                <article class="story-slide"><div class="story-slide-media"><div class="story-placeholder">Add: assets/story-09-pre-wedding-01.jpg</div></div><div class="story-slide-number">09</div><div class="story-slide-caption">Pre-wedding photo 1</div></article>
+                <article class="story-slide"><div class="story-slide-media"><div class="story-placeholder">Add: assets/story-10-pre-wedding-02.jpg</div></div><div class="story-slide-number">10</div><div class="story-slide-caption">Pre-wedding photo 2</div></article>
+              </div>
+              <button type="button" class="story-arrow story-next" id="storyNext" aria-label="Next story">›</button>
+            </div>
+            <p class="story-gallery-note">Swipe / scroll to explore our story</p>
           </div>
         </div>
       </div>
+
+    </div>
+  </section>
+
+  <section class="family" id="family">
+    <div class="section-inner">
+      <div class="section-label">With love &amp; blessings</div><h2 class="section-title">Our families</h2>
+      <div class="section-script">the people who made our story possible</div>
+      <div class="family-grid">
+        <div class="family-card"><div class="family-icon">❦</div><h3>Grandparents</h3><p>[Names here]</p></div>
+        <div class="family-card"><div class="family-icon">❦</div><h3>Parents</h3><p>[Names here]</p></div>
+        <div class="family-card"><div class="family-icon">❦</div><h3>Uncles &amp; Aunts</h3><p>[Names here]</p></div>
+        <div class="family-card"><div class="family-icon">❦</div><h3>Nieces &amp; Nephews</h3><p>[Names here]</p></div>
+        <div class="family-card"><div class="family-icon">❦</div><h3>Cousins</h3><p>[Names here]</p></div>
+      </div>
+      <p class="card-note">Replace each [Names here] placeholder directly in this HTML.</p>
     </div>
   </section>
 
@@ -218,23 +387,49 @@
       <h2 class="section-title">Be our guest</h2>
       <div class="section-script">your presence is the gift</div>
       <div class="rsvp-box">
-        <form id="rsvpForm">
-          <div class="field"><label for="name">Your name</label><input id="name" required placeholder="Enter your name"></div>
+        <!-- Direct Form Action submitting to Hidden iFrame -->
+        <form id="rsvpForm" action="https://script.google.com/macros/s/AKfycbzOkLNAMVJE8LaclC58AvJkSewPCFFmuNn0i8mdzVNdart5BaAaBFrkqIFi7AuGrRST/exec" method="POST" target="hidden_iframe">
+          <div class="field"><label for="name">Your name</label><input id="name" name="name" required placeholder="Enter your name"></div>
+          <div class="field"><label for="mobile">Guest mobile number</label><input id="mobile" name="mobile" type="tel" inputmode="numeric" pattern="[0-9+\-\s]{10,15}" required placeholder="e.g. 8097592327"></div>
           <div class="field"><label for="attendance">Will you be joining us?</label>
-            <select id="attendance" required><option value="">Please select</option><option>Joyfully attending</option><option>With love, but unable to attend</option></select>
+            <select id="attendance" name="attendance" required>
+              <option value="">Please select</option>
+              <option value="Joyfully attending">Joyfully attending</option>
+              <option value="With love, but unable to attend">With love, but unable to attend</option>
+            </select>
           </div>
-          <div class="field"><label for="guests">Number of guests</label><input id="guests" type="number" min="1" max="10" value="1"></div>
-          <div class="field"><label for="message">A note for the couple</label><textarea id="message" placeholder="Leave us a little message…"></textarea></div>
-          <button class="open-btn" type="submit">Prepare RSVP</button>
+          
+          <!-- Counters Section (Toggled dynamically) -->
+          <div class="rsvp-counters" id="rsvpCounters">
+            <div class="counter"><label>Adults</label><div class="counter-row"><button class="counter-btn" type="button" data-counter="adult" data-change="-1">−</button><span class="counter-value" id="adultCount">1</span><button class="counter-btn" type="button" data-counter="adult" data-change="1">+</button></div></div>
+            <div class="counter"><label>Children</label><div class="counter-row"><button class="counter-btn" type="button" data-counter="child" data-change="-1">−</button><span class="counter-value" id="childCount">0</span><button class="counter-btn" type="button" data-counter="child" data-change="1">+</button></div></div>
+          </div>
+          
+          <!-- Hidden inputs to pass counter numbers -->
+          <input type="hidden" name="adults" id="hiddenAdults" value="1">
+          <input type="hidden" name="children" id="hiddenChildren" value="0">
+          
+          <div class="field"><label for="message">A note for the couple</label><textarea id="message" name="message" placeholder="Leave us a little message…"></textarea></div>
+          <button class="open-btn" type="submit" id="rsvpSubmitBtn">Send RSVP</button>
+          <p class="google-note">RSVP submissions are securely recorded in your Google Sheet.</p>
         </form>
+
+        <!-- Hidden iFrame to capture redirect -->
+        <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
       </div>
+    </div>
+  </section>
+
+  <section class="music" id="music">
+    <div class="section-inner"><div class="section-label">A little music</div><h2 class="section-title">For the journey</h2><div class="section-script">a soundtrack for our celebration</div>
+      <div class="music-player" id="musicPlayer"><div class="music-disc">F &amp; P</div><div class="music-title">Our Wedding Song</div><div class="music-caption">Replace <strong>assets/wedding-song.mp3</strong> with your chosen song.</div><div class="music-controls"><button id="playMusic" type="button">▶</button></div><audio id="weddingAudio" preload="none" src="assets/wedding-song.mp3"></audio></div>
     </div>
   </section>
 
   <footer class="footer">
     <div class="section-label">With love</div>
     <div class="names">Fronald <span class="amp">&amp;</span> Pratiksha</div>
-    <p>03 December 2026 · Mumbai</p>
+    <p>03 December 2026 · Mumbai</p><div class="hashtags">#fernsandpetals &nbsp;&nbsp; #fnpincovenant</div>
     <a class="backtop" href="#home">Back to the beginning ↑</a>
   </footer>
 </main>
@@ -242,8 +437,6 @@
 <div class="toast" id="toast"></div>
 
 <script>
-  const RSVP_WHATSAPP = "918097592327"; // Add digits only, e.g. "9198XXXXXXXX". Leave blank to copy the RSVP text.
-
   const preloader = document.getElementById('preloader');
   const opening = document.getElementById('opening');
   const site = document.getElementById('site');
@@ -263,25 +456,122 @@
   function showToast(text){
     toast.textContent = text;
     toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 3000);
+    setTimeout(() => toast.classList.remove('show'), 3500);
   }
 
-  document.getElementById('rsvpForm').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const name = document.getElementById('name').value.trim();
-    const attendance = document.getElementById('attendance').value;
-    const guests = document.getElementById('guests').value;
-    const message = document.getElementById('message').value.trim();
+  // --- Story Gallery Navigation Controls & Wheel Scrolling ---
+  const galleryTrack = document.getElementById('storyGalleryTrack');
+  const storyPrev = document.getElementById('storyPrev');
+  const storyNext = document.getElementById('storyNext');
 
-    const text = `Wedding RSVP — Fronald & Pratiksha%0A%0AName: ${encodeURIComponent(name)}%0AAttendance: ${encodeURIComponent(attendance)}%0AGuests: ${encodeURIComponent(guests)}%0ANote: ${encodeURIComponent(message || '—')}`;
+  if (galleryTrack) {
+    storyPrev?.addEventListener('click', () => {
+      galleryTrack.scrollBy({ left: -300, behavior: 'smooth' });
+    });
 
-    if (RSVP_WHATSAPP) {
-      window.open(`https://wa.me/${RSVP_WHATSAPP}?text=${text}`, '_blank', 'noopener');
+    storyNext?.addEventListener('click', () => {
+      galleryTrack.scrollBy({ left: 300, behavior: 'smooth' });
+    });
+
+    galleryTrack.addEventListener('wheel', (evt) => {
+      if (evt.deltaY !== 0) {
+        evt.preventDefault();
+        galleryTrack.scrollLeft += evt.deltaY;
+      }
+    }, { passive: false });
+  }
+
+  // --- RSVP Guest Counters & Validation Logic ---
+  const counters = { adult: 1, child: 0 };
+  const hiddenAdults = document.getElementById('hiddenAdults');
+  const hiddenChildren = document.getElementById('hiddenChildren');
+  const attendanceSelect = document.getElementById('attendance');
+  const countersBox = document.getElementById('rsvpCounters');
+
+  // Handle dropdown change: auto-hide counters and zero counts if declining
+  attendanceSelect.addEventListener('change', () => {
+    if (attendanceSelect.value === 'With love, but unable to attend') {
+      countersBox.classList.add('hidden');
+      counters.adult = 0;
+      counters.child = 0;
     } else {
-      navigator.clipboard?.writeText(decodeURIComponent(text.replaceAll('%0A','\n'))) || null;
-      showToast('RSVP copied. Add your WhatsApp number to enable direct sending.');
+      countersBox.classList.remove('hidden');
+      counters.adult = 1;
+      counters.child = 0;
     }
+    document.getElementById('adultCount').textContent = counters.adult;
+    document.getElementById('childCount').textContent = counters.child;
+    hiddenAdults.value = counters.adult;
+    hiddenChildren.value = counters.child;
   });
+
+  document.querySelectorAll('.counter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Prevent editing if not attending
+      if (attendanceSelect.value === 'With love, but unable to attend') return;
+
+      const key = btn.dataset.counter;
+      counters[key] = Math.max(key === 'adult' ? 1 : 0, Math.min(20, counters[key] + Number(btn.dataset.change)));
+      document.getElementById(key === 'adult' ? 'adultCount' : 'childCount').textContent = counters[key];
+      hiddenAdults.value = counters.adult;
+      hiddenChildren.value = counters.child;
+    });
+  });
+
+  // --- Form Submission & Immediate Reset Handler ---
+  const rsvpForm = document.getElementById('rsvpForm');
+  const submitBtn = document.getElementById('rsvpSubmitBtn');
+
+  rsvpForm.addEventListener('submit', () => {
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting...';
+
+    setTimeout(() => {
+      showToast('Thank you! Your RSVP has been recorded.');
+      rsvpForm.reset();
+      
+      // Reset counters back to defaults
+      counters.adult = 1;
+      counters.child = 0;
+      countersBox.classList.remove('hidden');
+      if (hiddenAdults) hiddenAdults.value = '1';
+      if (hiddenChildren) hiddenChildren.value = '0';
+      document.getElementById('adultCount').textContent = '1';
+      document.getElementById('childCount').textContent = '0';
+
+      // Restore button
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send RSVP';
+    }, 1500);
+  });
+
+  // --- Music Player ---
+  const playMusic = document.getElementById('playMusic'), 
+        weddingAudio = document.getElementById('weddingAudio'), 
+        musicPlayer = document.getElementById('musicPlayer');
+
+  if(playMusic && weddingAudio){
+    playMusic.addEventListener('click', async () => {
+      try {
+        if(weddingAudio.paused){
+          await weddingAudio.play();
+          musicPlayer.classList.add('playing');
+          playMusic.textContent = 'Ⅱ';
+        } else {
+          weddingAudio.pause();
+          musicPlayer.classList.remove('playing');
+          playMusic.textContent = '▶';
+        }
+      } catch(e) {
+        showToast('Add assets/wedding-song.mp3 to enable music.');
+      }
+    });
+    
+    weddingAudio.addEventListener('ended', () => {
+      musicPlayer.classList.remove('playing');
+      playMusic.textContent = '▶';
+    });
+  }
 </script>
 </body>
 </html>
