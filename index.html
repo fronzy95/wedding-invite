@@ -31,7 +31,7 @@
     .mini-monogram{font:600 4rem/1 var(--serif);color:var(--gold);letter-spacing:.08em}
     .preloader p{font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
     
-    /* Landing screen & perfectly centered typography */
+    /* Landing screen & typography */
     .opening{position:fixed;inset:0;z-index:90;display:grid;place-items:center;background:rgba(246,240,229,.98);transition:opacity .8s,visibility .8s}
     .opening.opened{opacity:0;visibility:hidden;pointer-events:none}
     .opening-card{width:min(88vw,440px);min-height:640px;position:relative;display:flex;align-items:center;justify-content:center;text-align:center;padding:50px 30px;background:linear-gradient(145deg,#f8f3e9,#eee5d3);border:1px solid var(--line);box-shadow:var(--shadow);overflow:hidden}
@@ -70,15 +70,13 @@
     section{padding:100px 20px;position:relative}
     .section-inner{max-width:1000px;margin:auto}
     .section-label{font-size:.65rem;letter-spacing:.32em;text-transform:uppercase;color:var(--muted);text-align:center}
-    .section-title{text-align:center;font:500 clamp(2.8rem,9vw,5.5rem)/.95 var(--serif);margin:16px 0 16px}
-    
-    /* Increased Script Prominence */
+    .section-title{text-align:center;font:500 clamp(2.8rem,9vw,5.5rem)/.95 var(--serif);margin:16px 0 16px;position:relative}
+    .section-title .watermark{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font:400 7rem/1 var(--script);color:rgba(178,138,67,.08);pointer-events:none;z-index:0;white-space:nowrap}
     .section-script{text-align:center;font:400 clamp(2.3rem,5vw,3.2rem)/1.1 var(--script);color:var(--gold);margin:0 0 35px}
     
     .intro{background:linear-gradient(180deg,var(--paper),var(--paper2))}
     .intro-copy{max-width:680px;margin:0 auto;text-align:center;font:400 clamp(1.2rem,3vw,1.6rem)/1.7 var(--serif);color:#4a5443}
     
-    /* Larger Prominent Bible Verse */
     .verse{margin:50px auto 0;max-width:760px;text-align:center;padding:38px 24px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
     .verse q{font:400 clamp(2.4rem,6vw,3.4rem)/1.2 var(--script);quotes:none;color:var(--ink);display:block}
     .verse cite{display:block;margin-top:16px;font-style:normal;font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);font-weight:600}
@@ -89,8 +87,6 @@
     .event-card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
     .event-icon{font-size:2rem;color:var(--gold);margin-bottom:12px}
     .event-name{font:600 2.2rem/1.05 var(--serif);letter-spacing:.04em}
-    
-    /* Larger legible italic celebration subheaders */
     .event-sub{font:400 1.25rem/1.3 var(--script);color:var(--ink);margin:10px 0 20px}
     .event-date{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:600}
     .event-time{font:600 1.25rem var(--serif);margin-top:6px}
@@ -98,6 +94,41 @@
     .event-actions{display:flex;justify-content:center;gap:14px;margin-top:18px;flex-wrap:wrap}
     .maps,.cal-link{display:inline-block;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);border-bottom:1px solid var(--gold);padding-bottom:3px;font-weight:600}
     .cal-link{color:var(--gold)}
+
+    /* Day Flow Timeline Section */
+    .day-flow{background:var(--paper2);padding:90px 20px}
+    .flow-line{max-width:700px;margin:40px auto 0;position:relative;padding-left:30px}
+    .flow-line:before{content:"";position:absolute;left:8px;top:10px;bottom:10px;width:2px;background:var(--line)}
+    .flow-step{position:relative;margin-bottom:36px}
+    .flow-step:last-child{margin-bottom:0}
+    .flow-dot{position:absolute;left:-30px;top:4px;width:18px;height:18px;border-radius:50%;background:var(--paper);border:2px solid var(--gold);box-shadow:0 0 0 4px var(--paper2)}
+    .flow-time{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:600}
+    .flow-title{font:600 1.5rem/1.2 var(--serif);margin:4px 0 6px;color:var(--ink)}
+    .flow-desc{font-size:.86rem;line-height:1.5;color:var(--muted);margin:0}
+
+    /* Dress Code & Palette Guide Section */
+    .attire{background:var(--paper);padding:90px 20px}
+    .attire-box{max-width:820px;margin:40px auto 0;background:rgba(255,255,255,.6);border:1px solid var(--line);border-radius:6px;padding:36px 28px;box-shadow:var(--shadow)}
+    .attire-intro{text-align:center;font:400 1.15rem/1.7 var(--serif);color:#4a5443;max-width:620px;margin:0 auto 28px}
+    .palette-row{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-bottom:34px}
+    .palette-item{display:flex;flex-direction:column;align-items:center;width:80px}
+    .swatch{width:56px;height:56px;border-radius:50%;border:2px solid rgba(255,255,255,.8);box-shadow:0 4px 12px rgba(0,0,0,.12);margin-bottom:8px;transition:.25s}
+    .swatch:hover{transform:scale(1.12)}
+    .palette-name{font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-align:center}
+    .attire-events{display:grid;grid-template-columns:1fr 1fr;gap:22px;border-top:1px solid var(--line);padding-top:28px}
+    .attire-event h4{font:600 1.35rem var(--serif);margin:0 0 8px;color:var(--ink)}
+    .attire-event p{font-size:.86rem;line-height:1.6;color:var(--muted);margin:0}
+
+    /* Interactive Accordion FAQ */
+    .faq{background:#eae4d6;padding:95px 20px}
+    .faq-container{max-width:760px;margin:40px auto 0;display:grid;gap:14px}
+    .faq-item{background:rgba(250,247,239,.88);border:1px solid var(--line);border-radius:4px;overflow:hidden;box-shadow:0 6px 20px rgba(55,48,31,.04);transition:.25s}
+    .faq-item[open]{background:#ffffff}
+    .faq-summary{padding:20px 24px;font:600 1.25rem var(--serif);color:var(--ink);cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;user-select:none}
+    .faq-summary::-webkit-details-marker{display:none}
+    .faq-summary:after{content:"+";font-size:1.4rem;color:var(--gold);font-weight:400;transition:transform .2s}
+    .faq-item[open] .faq-summary:after{content:"−";color:var(--ink)}
+    .faq-body{padding:0 24px 22px;font-size:.88rem;line-height:1.65;color:#4a5443;border-top:1px solid rgba(178,138,67,.2);padding-top:16px}
     
     .story{background:var(--paper)}
     .story-layout{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
@@ -125,7 +156,6 @@
     .story-slide-number{font-size:.55rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);text-align:center}
     .story-gallery-note{text-align:center;margin:13px 0 0;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
     
-    /* Fixed Counter Box with clear breathing room */
     .rsvp-counters{
       display:grid;
       grid-template-columns:1fr 1fr;
@@ -182,6 +212,10 @@
     .footer .names{font:500 clamp(3rem,8vw,4.2rem)/.85 var(--serif)}
     .footer .amp{font:400 2.4rem var(--script);color:var(--gold);display:block;margin:12px 0}
     .footer p{font-size:.65rem;letter-spacing:.26em;text-transform:uppercase;color:var(--muted)}
+    
+    /* WhatsApp Share Button in Footer */
+    .whatsapp-btn{display:inline-flex;align-items:center;gap:8px;background:#25d366;color:#ffffff;padding:11px 22px;border-radius:999px;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;margin-top:24px;font-weight:600;box-shadow:0 6px 18px rgba(37,211,102,.25);transition:.25s}
+    .whatsapp-btn:hover{background:#1eb857;transform:translateY(-2px)}
     .backtop{display:inline-block;margin-top:25px;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;border-bottom:1px solid var(--gold);padding-bottom:5px}
     
     .petal{position:absolute;width:12px;height:25px;border-radius:100% 0 100% 0;background:var(--rose);opacity:.45;animation:drift 8s linear infinite;pointer-events:none}
@@ -214,17 +248,18 @@
     .family-card p{font:400 .84rem/1.4 var(--serif);color:var(--muted);margin:8px 0 0}
     .card-note{font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:25px;text-align:center}
 
-    .music{background:#252e21;color:#f7f1e7}.music .section-label{color:#bbc4ae}.music .section-script{color:#d8b36a}
-    .music-player{max-width:480px;margin:35px auto 0;text-align:center;border:1px solid rgba(255,255,255,.18);padding:35px 25px;background:rgba(255,255,255,.04);border-radius:4px}
-    .music-disc{width:100px;height:100px;border-radius:50%;margin:0 auto 22px;border:1px solid #caa760;display:grid;place-items:center;font:400 2.2rem var(--script);animation:spin 9s linear infinite}
-    .music-player.playing .music-disc{animation-play-state:running}.music-player:not(.playing) .music-disc{animation-play-state:paused}
-    @keyframes spin{to{transform:rotate(360deg)}}
-    .music-title{font:500 1.6rem var(--serif)}.music-caption{font-size:.72rem;color:#bcc4b7;margin:6px 0 20px}
-    .music-controls{display:flex;justify-content:center;gap:12px}.music-controls button{width:48px;height:48px;border-radius:50%;border:1px solid #caa760;background:transparent;color:#fff;cursor:pointer}
+    /* Floating Persistent Music Widget */
+    .floating-music{position:fixed;bottom:24px;right:24px;z-index:70;display:flex;align-items:center;gap:10px;background:rgba(37,46,33,.88);backdrop-filter:blur(10px);border:1px solid rgba(216,179,106,.4);padding:8px 14px 8px 8px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.25);cursor:pointer;transition:.25s}
+    .floating-music:hover{transform:scale(1.05);background:rgba(37,46,33,.96)}
+    .floating-disc{width:36px;height:36px;border-radius:50%;border:1px solid var(--gold);background:var(--ink);color:var(--gold);display:grid;place-items:center;font:400 1.2rem var(--script);animation:spin 8s linear infinite;animation-play-state:paused}
+    .floating-music.playing .floating-disc{animation-play-state:running}
+    .floating-music-label{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:#f7f1e7;font-weight:600}
+    .floating-music-btn{width:24px;height:24px;display:grid;place-items:center;color:var(--gold);font-size:.8rem}
 
     @media(max-width:900px){
       .family-grid{grid-template-columns:repeat(2,1fr)}
       .event-grid{grid-template-columns:1fr;max-width:480px;margin-left:auto;margin-right:auto}
+      .attire-events{grid-template-columns:1fr}
     }
     @media(max-width:760px){
       section{padding:78px 18px}.opening-card{min-height:590px}
@@ -238,6 +273,9 @@
       .story-arrow{display:none}
       .countdown-wrap{gap:10px}
       .countdown-unit{min-width:54px;padding:8px 10px}
+      .palette-row{gap:12px}
+      .swatch{width:46px;height:46px}
+      .floating-music{bottom:18px;right:18px;padding:6px 12px 6px 6px}
     }
   </style>
 </head>
@@ -287,7 +325,7 @@
       <h2><span>Fronald</span><span class="amp">&amp;</span><span>Pratiksha</span></h2>
       <div class="hero-date">03 December 2026 · Mumbai</div>
       
-      <!-- Trending Feature: Live Wedding Countdown -->
+      <!-- Live Wedding Countdown -->
       <div class="countdown-wrap" id="weddingCountdown">
         <div class="countdown-unit"><span class="countdown-val" id="cdDays">--</span><span class="countdown-lbl">Days</span></div>
         <div class="countdown-unit"><span class="countdown-val" id="cdHours">--</span><span class="countdown-lbl">Hours</span></div>
@@ -303,11 +341,10 @@
   <section class="intro">
     <div class="section-inner">
       <div class="section-label">With grateful hearts</div>
-      <h2 class="section-title">We found our way<br>to forever.</h2>
+      <h2 class="section-title"><span class="watermark">F &amp; P</span>We found our way<br>to forever.</h2>
       <div class="section-script">and we would love to celebrate with you</div>
       <p class="intro-copy">With our families beside us and God at the centre of our story, we invite you to share in the joy of our wedding day.</p>
       
-      <!-- Prominent, Larger Bible Verse -->
       <div class="verse">
         <q>“I have found the one whom my soul loves.”</q>
         <cite>Song of Solomon 3:4</cite>
@@ -320,8 +357,7 @@
   <section class="events" id="events">
     <div class="section-inner">
       <div class="section-label">Mark your calendar</div>
-      <h2 class="section-title">The celebrations</h2>
-      <!-- Enhanced Subtitle Font -->
+      <h2 class="section-title"><span class="watermark">Events</span>The celebrations</h2>
       <div class="section-script">three moments, one beautiful beginning</div>
       
       <div class="event-grid">
@@ -367,10 +403,119 @@
     </div>
   </section>
 
+  <!-- Interactive Day Flow Timeline -->
+  <section class="day-flow" id="timeline">
+    <div class="section-inner">
+      <div class="section-label">Order of Events</div>
+      <h2 class="section-title"><span class="watermark">Flow</span>The Wedding Day</h2>
+      <div class="section-script">a beautiful journey from vows to celebration</div>
+      <div class="flow-line">
+        <div class="flow-step">
+          <div class="flow-dot"></div>
+          <div class="flow-time">4:00 PM</div>
+          <div class="flow-title">Guest Arrival &amp; Seating</div>
+          <p class="flow-desc">Gloria Banquets, Ghodbunder Road. Take your seats as soft hymns fill the hall.</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-dot"></div>
+          <div class="flow-time">4:30 PM</div>
+          <div class="flow-title">The Nuptial Ceremony</div>
+          <p class="flow-desc">The sacred exchange of vows, rings, and solemn covenant before God and family.</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-dot"></div>
+          <div class="flow-time">6:00 PM</div>
+          <div class="flow-title">Congratulations &amp; High Tea</div>
+          <p class="flow-desc">Greetings with the newlyweds, family photography, and refreshments.</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-dot"></div>
+          <div class="flow-time">7:00 PM</div>
+          <div class="flow-title">Grand Reception Entrance</div>
+          <p class="flow-desc">The newlyweds make their first official entrance, followed by cake cutting and toasts.</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-dot"></div>
+          <div class="flow-time">8:00 PM</div>
+          <div class="flow-title">Dinner &amp; Celebrations</div>
+          <p class="flow-desc">An evening of fine dinner, family dances, and joyful music.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Attire & Visual Color Palette Guide -->
+  <section class="attire" id="attire">
+    <div class="section-inner">
+      <div class="section-label">Style Guide</div>
+      <h2 class="section-title"><span class="watermark">Palette</span>Attire &amp; Palette</h2>
+      <div class="section-script">celebrate in warm, timeless colors</div>
+      <div class="attire-box">
+        <p class="attire-intro">We invite you to dress up and celebrate with us! While your comfort is most important, here is our suggested wedding color inspiration:</p>
+        
+        <div class="palette-row">
+          <div class="palette-item"><div class="swatch" style="background:#f4efe6"></div><span class="palette-name">Warm Ivory</span></div>
+          <div class="palette-item"><div class="swatch" style="background:#8f9c85"></div><span class="palette-name">Sage Green</span></div>
+          <div class="palette-item"><div class="swatch" style="background:#d8b36a"></div><span class="palette-name">Champagne</span></div>
+          <div class="palette-item"><div class="swatch" style="background:#d9a39b"></div><span class="palette-name">Dusty Rose</span></div>
+          <div class="palette-item"><div class="swatch" style="background:#6d2133"></div><span class="palette-name">Burgundy</span></div>
+          <div class="palette-item"><div class="swatch" style="background:#c47357"></div><span class="palette-name">Terracotta</span></div>
+        </div>
+
+        <div class="attire-events">
+          <div class="attire-event">
+            <h4>Haldi &amp; Sangeet</h4>
+            <p>Festive, bright, or ethnic semi-formal attire. Yellows, mustard, warm creams, and festive Indian wear.</p>
+          </div>
+          <div class="attire-event">
+            <h4>Nuptials &amp; Reception</h4>
+            <p>Formal evening wear. Suits, blazers, tuxedos, Nehru jackets, sarees, or elegant gowns in subtle evening tones.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Accordion FAQ -->
+  <section class="faq" id="faq">
+    <div class="section-inner">
+      <div class="section-label">Questions &amp; Details</div>
+      <h2 class="section-title"><span class="watermark">FAQ</span>Guest Guide</h2>
+      <div class="section-script">everything you need to know for the day</div>
+      
+      <div class="faq-container">
+        <details class="faq-item" open>
+          <summary class="faq-summary">Is parking available at Gloria Banquets and Voxton Inn?</summary>
+          <div class="faq-body">Yes! Both venues provide dedicated parking facilities and on-site valet assistance for all arriving guests.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-summary">What is the nearest railway station or transit point?</summary>
+          <div class="faq-body">For Gloria Banquets (Ghodbunder Road), Thane Railway Station is the nearest transit hub (approx. 20–25 minutes via taxi/auto). For Voxton Inn, Mira Road Station is located nearby with easy auto-rickshaw access.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-summary">Are children welcome?</summary>
+          <div class="faq-body">Absolutely! We would love to celebrate with your entire family. Please ensure you update the guest count in the RSVP form so we can arrange adequate seating.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-summary">Can we take photos and share them?</summary>
+          <div class="faq-body">Yes! We would be delighted to see the celebration through your eyes. Feel free to snap photos and tag them with our official hashtags: <strong>#fernsandpetals</strong> and <strong>#fnpincovenant</strong>.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-summary">What is your gift policy?</summary>
+          <div class="faq-body">Your presence and heartfelt prayers are the greatest blessing we could receive. If you wish to honour us with a token, a monetary gift or envelope would be deeply appreciated as we begin building our home together.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
   <section class="story" id="story">
     <div class="section-inner">
       <div class="section-label">Our story</div>
-      <h2 class="section-title">From a moment<br>to a lifetime.</h2>
+      <h2 class="section-title"><span class="watermark">Story</span>From a moment<br>to a lifetime.</h2>
       <div class="section-script">a little chapter of our own</div>
       <div class="story-layout">
         <div class="story-art"><img src="assets/couple-caricature.png" alt="Fronald and Pratiksha illustration"></div>
@@ -406,7 +551,8 @@
 
   <section class="family" id="family">
     <div class="section-inner">
-      <div class="section-label">With love &amp; blessings</div><h2 class="section-title">Our families</h2>
+      <div class="section-label">With love &amp; blessings</div>
+      <h2 class="section-title"><span class="watermark">Family</span>Our families</h2>
       <div class="section-script">the people who made our story possible</div>
       <div class="family-grid">
         <div class="family-card"><div class="family-icon">❦</div><h3>Grandparents</h3><p>[Names here]</p></div>
@@ -436,7 +582,6 @@
             </select>
           </div>
           
-          <!-- Spaced & Aligned Counters Section -->
           <div class="rsvp-counters" id="rsvpCounters">
             <div class="counter">
               <label>Adults</label>
@@ -469,19 +614,30 @@
     </div>
   </section>
 
-  <section class="music" id="music">
-    <div class="section-inner"><div class="section-label">A little music</div><h2 class="section-title">For the journey</h2><div class="section-script">a soundtrack for our celebration</div>
-      <div class="music-player" id="musicPlayer"><div class="music-disc">F &amp; P</div><div class="music-title">Our Wedding Song</div><div class="music-caption">Replace <strong>assets/wedding-song.mp3</strong> with your chosen song.</div><div class="music-controls"><button id="playMusic" type="button">▶</button></div><audio id="weddingAudio" preload="none" src="assets/wedding-song.mp3"></audio></div>
-    </div>
-  </section>
-
   <footer class="footer">
     <div class="section-label">With love</div>
     <div class="names">Fronald <span class="amp">&amp;</span> Pratiksha</div>
-    <p>03 December 2026 · Mumbai</p><div class="hashtags">#fernsandpetals &nbsp;&nbsp; #fnpincovenant</div>
+    <p>03 December 2026 · Mumbai</p>
+    
+    <!-- One-Tap WhatsApp Share Button -->
+    <div>
+      <a class="whatsapp-btn" id="whatsappShare" href="https://api.whatsapp.com/send?text=You%20are%20warmly%20invited%20to%20the%20wedding%20celebration%20of%20Fronald%20%26%20Pratiksha!%20View%20invitation%20and%20RSVP%20here:%20" target="_blank" rel="noopener">
+        <span>Share Invitation on WhatsApp</span>
+      </a>
+    </div>
+
+    <div class="hashtags">#fernsandpetals &nbsp;&nbsp; #fnpincovenant</div>
     <a class="backtop" href="#home">Back to the beginning ↑</a>
   </footer>
 </main>
+
+<!-- Floating Ambient Music Widget -->
+<div class="floating-music" id="floatingMusic" title="Click to play/pause soundtrack">
+  <div class="floating-disc">F&amp;P</div>
+  <span class="floating-music-label">Wedding Song</span>
+  <span class="floating-music-btn" id="floatingMusicBtn">▶</span>
+</div>
+<audio id="weddingAudio" preload="none" src="assets/wedding-song.mp3"></audio>
 
 <div class="toast" id="toast"></div>
 
@@ -506,6 +662,12 @@
     toast.textContent = text;
     toast.classList.add('show');
     setTimeout(() => toast.classList.remove('show'), 3500);
+  }
+
+  // --- Auto WhatsApp share link updater ---
+  const waBtn = document.getElementById('whatsappShare');
+  if (waBtn) {
+    waBtn.href = "https://api.whatsapp.com/send?text=" + encodeURIComponent("You are warmly invited to the wedding celebration of Fronald & Pratiksha! View our invitation and RSVP here: " + window.location.href);
   }
 
   // --- Countdown to December 3, 2026 ---
@@ -611,31 +773,31 @@
     }, 1500);
   });
 
-  // --- Music Player ---
-  const playMusic = document.getElementById('playMusic'), 
-        weddingAudio = document.getElementById('weddingAudio'), 
-        musicPlayer = document.getElementById('musicPlayer');
+  // --- Floating Music Player ---
+  const floatingMusic = document.getElementById('floatingMusic');
+  const floatingMusicBtn = document.getElementById('floatingMusicBtn');
+  const weddingAudio = document.getElementById('weddingAudio');
 
-  if(playMusic && weddingAudio){
-    playMusic.addEventListener('click', async () => {
+  if (floatingMusic && weddingAudio) {
+    floatingMusic.addEventListener('click', async () => {
       try {
-        if(weddingAudio.paused){
+        if (weddingAudio.paused) {
           await weddingAudio.play();
-          musicPlayer.classList.add('playing');
-          playMusic.textContent = 'Ⅱ';
+          floatingMusic.classList.add('playing');
+          floatingMusicBtn.textContent = 'Ⅱ';
         } else {
           weddingAudio.pause();
-          musicPlayer.classList.remove('playing');
-          playMusic.textContent = '▶';
+          floatingMusic.classList.remove('playing');
+          floatingMusicBtn.textContent = '▶';
         }
-      } catch(e) {
+      } catch (e) {
         showToast('Add assets/wedding-song.mp3 to enable music.');
       }
     });
-    
+
     weddingAudio.addEventListener('ended', () => {
-      musicPlayer.classList.remove('playing');
-      playMusic.textContent = '▶';
+      floatingMusic.classList.remove('playing');
+      floatingMusicBtn.textContent = '▶';
     });
   }
 </script>
